@@ -1,2 +1,2 @@
 # ansible-training
-This repositories contains playbooks ive written when practicing for ex407/ex294.
+This repository contains playbooks ive written when practicing for ex407/ex294.
