@@ -1,10 +1,13 @@
 ---
 - hosts: db
   become: true
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: create custom fact
-      lineinfile:
-        path: /etc/ansible/facts.d/sample_exam.fact
-        create: true
-        line: "server_role=mysql"
+      template:
+        dest: /etc/ansible/facts.d/custom.fact
+        src: templates/custom.fact.j2
+
+    - name: Output our newly created fact
+      debug:
+        msg: "{{ ansible_local.custom.sample_exam }}"
