@@ -1,7 +1,0 @@
----
-- hosts: all
-  become: true
-  tasks:
-    - name: debug this shit
-      debug:
-        msg: "{{ hostvars.rhel1.ansible_facts.fqdn }}"
