@@ -1,0 +1,3 @@
+{% for server in ansible_play_hosts_all %}
+{{ hostvars[server].ansible_fqdn }}
+{% endfor %}

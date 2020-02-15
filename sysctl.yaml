@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: set vm.swappiness to 10
+      sysctl:
+        name: vm.swappiness
+        value: '5'
+        state: present
+      when: ansible_memtotal_mb > 2048
+
+    - name: display message
+      debug:
+        msg: "Server memory less than 2048"
+      when: ansible_memtotal_mb < 2048

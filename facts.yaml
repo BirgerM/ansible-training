@@ -1,0 +1,10 @@
+---
+- hosts: db
+  become: true
+  gather_facts: false
+  tasks:
+    - name: create custom fact
+      lineinfile:
+        path: /etc/ansible/facts.d/sample_exam.fact
+        create: true
+        line: "server_role=mysql"

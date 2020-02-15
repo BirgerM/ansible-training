@@ -1,0 +1,6 @@
+---
+- hosts: rhel1
+  gather_facts: false
+  become: true
+  roles:
+    - sample-mysql

@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: install packages
+      package:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - mailx
+        - tcpdump
+      when: '"proxy" in group_names'
+
+    - name: install packages
+      package:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - mailx
+        - lsof
+      when: '"db" in group_names'

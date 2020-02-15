@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Remove /etc/motd
+      file:
+        path: /etc/motd
+        state: absent
+
+    - name: Config motd based on group 
+      lineinfile:
+        path: /etc/motd
+        line: "Welcome to Apache server"
+        create: true
+      when: '"web" in group_names'
+
+    - name: Config motd based on group 
+      lineinfile:
+        path: /etc/motd
+        line: "Welcome to MySQL server"
+        create: true
+      when: '"db" in group_names'
+
+    - name: Config motd based on group 
+      lineinfile:
+        path: /etc/motd
+        line: "Welcome to HAProxy server"
+        create: true
+      when: '"proxy" in group_names'

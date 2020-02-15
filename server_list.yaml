@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: create server_list.txt
+      template:
+        src: templates/server_list.j2
+        dest: /etc/server_list.txt
+        owner: ansible
+        mode: 0600
+        setype: net_conf_t
+      when: '"db" in group_names'

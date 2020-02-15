@@ -1,0 +1,3 @@
+{% for host in ansible_play_hosts_all %}
+{{ ansible_facts.fqdn }} {{ ansible_facts.hostname }} {{ ansible_default_ipv4.address }}
+{% endfor %}

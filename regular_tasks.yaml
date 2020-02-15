@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Create cronjob that appends /var/log/time.log
+      cron:
+        name: "Append time.log"
+        minute: "0"
+        hour: "*"
+        job: date >> /var/log/time.log

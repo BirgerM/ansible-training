@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - geerlingguy.haproxy
+  vars:
+    haproxy_backend_servers:
+      - name: rhel1
+        address: 192.168.199.128
+      - name: rhel2
+        address: 192.168.199.130
+    haproxy_backend_balance_method: 'roundrobin'
+    haproxy_frontend_port: 80
+  tasks:
+    - name: Configure firewall to allow traffic
+      firewalld:
+        service: http
+        state: enabled
+        permanent: yes

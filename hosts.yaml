@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: create hostsfile from template
+      template:
+        src: templates/hostfile.j2
+        dest: /etc/hostfile

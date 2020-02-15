@@ -1,0 +1,7 @@
+---
+- hosts: db
+  become: true
+  tasks:
+    - name: display fact
+      debug:
+        msg: "{{ ansible_local.sample_exam.server_role }}"

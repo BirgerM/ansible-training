@@ -1,0 +1,44 @@
+---
+# tasks file for sample-mysql
+- name: create partition /dev/sdb
+  parted:
+    device: /dev/nvme0n2
+    part_type: primary
+    state: present
+    number: 1
+    part_end: 800MiB
+
+- name: Create volume group vg_database
+  lvg:
+    vg: vg_database
+    pvs: /dev/nvme0n2p1
+
+- name: create logical volume lv_mysql
+  lvol:
+    vg: vg_database
+    lv: lv_mysql
+    size: 512M
+
+- name: Create xfs on newly created lvol
+  filesystem:
+    fstype: xfs
+    dev: /dev/vg_database/lv_mysql
+
+- name: Mount lv_mysql on /mnt/mysql_backups
+  mount:
+    path: /mnt/mysql_backups
+    src: /dev/vg_database/lv_mysql
+    fstype: xfs
+    state: mounted
+
+- name: Install mariadb-server
+  package:
+    name: mariadb-server
+    state: present
+
+- name: Start and enable the service
+  service:
+    name: mariadb
+    state: started
+    enabled: true
+

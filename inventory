@@ -1,0 +1,9 @@
+[proxy]
+rhel1
+
+[web]
+rhel2
+rhel3
+
+[db]
+rhel4

@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Config sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#Banner none$'
+        line: Banner /etc/motd
+
+    - name: Config sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^X11Forwarding yes$'
+        line: X11Forwarding no
+
+    - name: Config sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#MaxAuthTries 6$'
+        line: MaxAuthTries 3

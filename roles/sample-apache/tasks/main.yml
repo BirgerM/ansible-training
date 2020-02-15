@@ -1,0 +1,33 @@
+---
+# tasks file for sample-apache
+
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - httpd
+    - mod_ssl
+    - php
+
+- name: Start and enable httpd
+  service:
+    name: httpd
+    state: started
+    enabled: true
+
+- name: add http and https services
+  firewalld:
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+  with_items:
+    - http
+    - https
+  notify: firewalld
+
+- name: Create index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  notify: restart httpd

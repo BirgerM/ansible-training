@@ -1,0 +1,14 @@
+- hosts: db
+  become: true
+  tasks:
+    - name: create file
+      lineinfile:
+        path: /mnt/mysql_backups/database_list.txt
+        line: dev,test,qa,prod
+        create: true
+
+    - name: create a archive of a single file
+      archive:
+        path: /mnt/mysql_backups/database_list.txt
+        dest: /mnt/mysql_backups/archive.gz
+        format: gz
