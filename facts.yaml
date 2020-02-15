@@ -8,11 +8,21 @@
         path: /etc/ansible/facts.d
         state: directory
 
-    - name: create custom fact
+    - name: create custom static fact
       template:
         dest: /etc/ansible/facts.d/custom.fact
         src: templates/custom.fact.j2
 
-    - name: Output our newly created fact
+    - name: create dynamic custom fact
+      template:
+        dest: /etc/ansible/facts.d/date.fact
+        src: templates/date.fact.j2
+        mode: 0755
+
+    - name: Output our newly created static fact
       debug:
         msg: "{{ ansible_local.custom.sample_exam }}"
+
+    - name: Output our newly created dynamic fact
+      debug:
+        msg: "{{ ansible_local.date }}"
