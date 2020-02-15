@@ -3,6 +3,11 @@
   become: true
   gather_facts: true
   tasks:
+    - name: create facts.d directory
+      file:
+        path: /etc/ansible/facts.d
+        state: directory
+
     - name: create custom fact
       template:
         dest: /etc/ansible/facts.d/custom.fact

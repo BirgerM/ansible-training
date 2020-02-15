@@ -4,4 +4,4 @@
   tasks:
     - name: display fact
       debug:
-        msg: "{{ ansible_local.sample_exam.server_role }}"
+        msg: "{{ ansible_local.custom.sample_exam }}"
