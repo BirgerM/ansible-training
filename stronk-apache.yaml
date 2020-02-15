@@ -1,0 +1,8 @@
+---
+- hosts: web
+  become: true
+  tasks:
+    - name: include role
+      include_role:
+        name: stronk-apache
+      when: '"web" in group_names'

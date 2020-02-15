@@ -1,0 +1,5 @@
+---
+# tasks file for stronk-apache
+- include_tasks: packages.yml
+
+- include_tasks: services.yml

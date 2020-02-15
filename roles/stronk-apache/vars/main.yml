@@ -1,0 +1,7 @@
+---
+# vars file for stronk-apache
+packages:
+  - httpd
+
+services:
+  - httpd
