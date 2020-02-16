@@ -1,6 +1,6 @@
 ---
 # tasks file for sample-mysql
-- name: create partition /dev/sdb
+- name: create partition on /dev/nvme0n2
   parted:
     device: /dev/nvme0n2
     part_type: primary
